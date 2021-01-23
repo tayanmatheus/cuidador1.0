@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% set pageId = "page-create-point" %}
+
+{% block title %}
+    <title>Cradastrar-se como cuidador</title>
+{% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/create-point.css">
+    <link rel="stylesheet" href="/styles/modal.css">
+
+{% endblock styles %}
+
+{% block content %}
+    {% include "partials/page-header.html" %}
+
+    <form action="/savepoint" method="POST">
+
+        <h1>Cadastro do novo cuidador</h1>
+
+        <fieldset>
+            <legend>
+                <h2>Dados da pessoa</h2>
+            </legend>
+
+            <div class="field">
+                <label for="image">Sua foto</label>
+                <input type="file" name="image" required="required">
+            </div>
+
+            <div class="field">
+                <label for="name">Nome completo</label>
+                <input type="text" name="name" required="required">
+            </div>
+            <div class="field-group">
+                <div class="field">
+                    <label for="cpf">CPF</label>
+                    <input type="text" name="cpf" required="required">
+                </div>
+                <div class="field">
+                    <label for="cellphone">Numero de celular</label>
+                    <input type="text" name="cellphone" required="required">
+                </div>
+            </div>
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="adress">Endereço</label>
+                    <input type="text" name="adress" required="required">
+                </div>
+                <div class="field">
+                    <label for="adress2">Número/Complemento</label>
+                    <input type="text" name="adress2" required="required">
+                </div>
+            </div>
+
+            <div class="field-group">
+                <div class="field">
+                    <label for="state">Estado</label>
+                    <select name="uf" required="required">
+                        <option value="">Selecione o Estado</option>
+                    </select>
+
+                    <input type="hidden" name="state" required="required">
+                </div>
+
+                <div class="field">
+                    <label for="state">Cidade</label>
+                    <select name="city" disabled="disabled" required="required">
+                        <option value="">Selecione a Cidade</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>
+                <h2>Quais serviços você fornecê</h2>
+                <span>Selecione um ou mais itens abaixo</span>
+            </legend>
+
+            <div class="items-grid">
+                <li data-id="Fazer compras">
+                    <img src="/assets/Online Shoping.svg" alt="fazer compras">
+                    <span>Fazer compras</span>
+                </li>
+                <li data-id="Serviços domensticos">
+                    <img src="/assets/esfregao.svg" alt="Limpar Casa">
+                    <span>Serviços domensticos</span>
+                </li>
+                <li data-id="Serviços culinários">
+                    <img src="/assets/Salad.svg" alt="Pagar contas">
+                    <span>Serviços culinários</span>
+                </li>
+                <li data-id="Acampanhamento Medico">
+                    <img src="/assets/Hospital1.svg" alt="Acampanhamento Medico">
+                    <span>Acampanhamento Medico</span>
+                </li>
+                <li data-id="Acampanhamento Viajem">
+                    <img src="/assets/carro.svg" alt="Acampanhamento Viajem">
+                    <span>Acampanhamento Viajem</span>
+                </li>
+                <li data-id="Passear com Animal">
+                    <img src="/assets/cao.png" width="64" height="64 alt=" alt="Passear com o animal">
+                    <span>Passear com o Animal</span>
+                </li>
+
+            </div>
+
+            <input type="hidden" name="items">
+
+        </fieldset>
+
+        <button type="submit">Cadastrar cuidador</button>
+
+    </form>
+
+
+    
+    
+{% endblock content %}
+
+{% block modal %}
+    {% if saved %}
+        {%include "partials/point-created.html"%}
+    {% endif %}
+{% endblock modal %} 
+
+
+{% block scripts %}
+    <script src="/scripts/create-point.js"></script>
+{% endblock scripts %}

@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% set pageId = "page-search-results" %}
+
+{% block title %}
+    <title>Resultado da pesquisa</title>
+{% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/styles/search-results.css">
+{% endblock styles %}
+
+{% block content %}
+    {% include "partials/page-header.html" %}
+
+    <main>
+        {% if total > 0 %}
+            <h3>
+                <strong>{{total}}
+                    cuidadores</strong>
+                encontrados
+            </h3>
+            <div class="cards">
+
+                {% for cuidador in cuidadores %}
+
+                    <div class="card">
+                        <h2 alt="{{ cuidador.image }}">{{ cuidador.image }}</h2>
+                        <h1>{{ cuidador.name }}</h1>
+                        <h3>{{ cuidador.items }}</h3>
+                        <h3>{{ cuidador.cpf }}</h3>
+                        <h3>{{ cuidador.cellphone }}</h3>
+                        <p>
+                            {{ cuidador.city }},
+                            {{ cuidador.state }}
+                            <br/>
+                            {{ cuidador.adress }}
+                            <br/>
+                            {{ cuidador.adress2 }}
+                        </p>
+                    </div>
+                    
+
+                {% endfor %}
+
+            </div>
+
+
+        {%else%}
+
+        <h3><strong>Cuidadores</strong> não encontrados</h3>
+
+        {% endif %}
+
+    </main>
+{% endblock content %}
